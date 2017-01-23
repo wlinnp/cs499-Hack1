@@ -94,7 +94,7 @@ function onListening() {
 
 // watches files in the directory described by dir
 function startFileWatcher() {
-    const dir = 'C:\\Users\\Connor\\Hack1';
+    const dir = '/home/ec2-user/dropbox';
 
     fs.watch(dir, function (event, filename) {
         console.log('event is: ' + event);
@@ -102,7 +102,7 @@ function startFileWatcher() {
             console.log('filename provided: ' + filename);
             // if the event is rename, it means the the file is deleted, created, or renamed
             if(event == 'rename') {
-                if(fs.existsSync(dir + '\\' + filename)) {
+                if(fs.existsSync(dir + '/' + filename)) {
                     console.log('file has been created or renamed');
                 } else {
                     console.log('file has been deleted');
