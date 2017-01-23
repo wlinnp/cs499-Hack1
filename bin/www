@@ -8,7 +8,7 @@ var app = require('../app');
 var debug = require('debug')('dropboxemulator:server');
 var http = require('http');
 const fs = require('fs');
-
+var s3 = require('../S3');
 /**
  * Get port from environment and store in Express.
  */
@@ -89,6 +89,7 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
   startFileWatcher();
+    //  s3.uploadToS3('/home/waiphyo/Pictures/', 'AmISafeHere.png');
 }
 
 // watches files in the directory described by dir
