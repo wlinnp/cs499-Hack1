@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('dropboxemulator:server');
 var http = require('http');
+const fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
@@ -87,4 +88,29 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  startFileWatcher();
+}
+
+// watches files in the directory described by dir
+function startFileWatcher() {
+    const dir = 'C:\\Users\\Connor\\Hack1';
+
+    fs.watch(dir, function (event, filename) {
+        console.log('event is: ' + event);
+        if (filename) {
+            console.log('filename provided: ' + filename);
+            // if the event is rename, it means the the file is deleted, created, or renamed
+            if(event == 'rename') {
+                if(fs.existsSync(dir + '\\' + filename)) {
+                    console.log('file has been created or renamed');
+                } else {
+                    console.log('file has been deleted');
+                }
+            } else {
+                console.log('file has been changed');
+            }
+        } else {
+            console.log('filename not provided');
+        }
+    });
 }
