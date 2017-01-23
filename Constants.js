@@ -8,7 +8,7 @@ const contentType = 'image/png';
 const acl = 'public-read';
 const url_prefix = 'https://s3-us-west-2.amazonaws.com/';
 const filePathPrefix = '';
-const folderPath = '/home/waiphyo/Pictures/';
+const folderPath = '/home/ec2-user/dropbox/';
 module.exports = {
     MAIN_ROOT : MAIN_ROOT,
     PATH_SEPARATOR : PATH_SEPARATOR,

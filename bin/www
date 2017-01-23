@@ -9,6 +9,7 @@ var debug = require('debug')('dropboxemulator:server');
 var http = require('http');
 const fs = require('fs');
 var s3 = require('../S3');
+var constants = require('../Constants');
 /**
  * Get port from environment and store in Express.
  */
@@ -94,21 +95,23 @@ function onListening() {
 
 // watches files in the directory described by dir
 function startFileWatcher() {
-    const dir = '/home/ec2-user/dropbox';
 
-    fs.watch(dir, function (event, filename) {
+    fs.watch(constants.FOLDER, function (event, filename) {
         console.log('event is: ' + event);
         if (filename) {
             console.log('filename provided: ' + filename);
             // if the event is rename, it means the the file is deleted, created, or renamed
             if(event == 'rename') {
-                if(fs.existsSync(dir + '/' + filename)) {
+                if(fs.existsSync(constants.FOLDER + filename)) {
                     console.log('file has been created or renamed');
+                    s3.uploadToS3(constants.FOLDER, filname);
                 } else {
                     console.log('file has been deleted');
+                    s3.deleteObject(constants.FOLDER, filename);
                 }
             } else {
                 console.log('file has been changed');
+                s3.uploadToS3(constants.FOLDER, filname);
             }
         } else {
             console.log('filename not provided');
