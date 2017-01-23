@@ -21,13 +21,6 @@ var uploadToS3 = function (filePath, fileName) {
             } else {
                 console.log(data);
                 console.log('upload to s3 succeeded for ' + fileName);
-                fs.unlink(filePath + fileName, function(err, info) {
-                    if (err) {
-                        console.error(err);
-                    } else {
-                        console.info(info);
-                    }
-                });
             }
         });
     });
