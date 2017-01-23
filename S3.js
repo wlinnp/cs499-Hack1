@@ -33,7 +33,22 @@ var uploadToS3 = function (filePath, fileName) {
     });
 };
 
+var deleteObject = function(fileName) {
+    var params = {
+        Bucket: constants.BUCKET,
+        Key: constants.FILE_PATH_PREFIX + fileName
+    };
+    s3.deleteObject(params, function(err, data) {
+        if (err) {
+            console.log(err, err.stack); // an error occurred
+        } else {
+            console.log(data);
+        }
+    });
+};
+
 module.exports = {
-    uploadToS3 : uploadToS3
+    uploadToS3 : uploadToS3,
+    deleteObject : deleteObject
 };
 

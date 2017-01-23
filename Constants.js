@@ -8,6 +8,7 @@ const contentType = 'image/png';
 const acl = 'public-read';
 const url_prefix = 'https://s3-us-west-2.amazonaws.com/';
 const filePathPrefix = '';
+const folderPath = '/home/waiphyo/Pictures/';
 module.exports = {
     MAIN_ROOT : MAIN_ROOT,
     PATH_SEPARATOR : PATH_SEPARATOR,
@@ -15,5 +16,6 @@ module.exports = {
     CONTENT_TYPE : contentType,
     ACL : acl,
     AMAZON_URL_PREFIX : url_prefix,
-    FILE_PATH_PREFIX : filePathPrefix
+    FILE_PATH_PREFIX : filePathPrefix,
+    FOLDER : folderPath
 }
