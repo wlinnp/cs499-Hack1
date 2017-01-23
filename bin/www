@@ -94,7 +94,7 @@ function onListening() {
 
 // watches files in the directory described by dir
 function startFileWatcher() {
-    const dir = 'C:\\Users\\Connor\\Hack1';
+    const dir = '/home/ec2-user/dropbox';
 
     fs.watch(dir, function (event, filename) {
         console.log('event is: ' + event);
