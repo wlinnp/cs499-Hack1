@@ -104,14 +104,14 @@ function startFileWatcher() {
             if(event == 'rename') {
                 if(fs.existsSync(constants.FOLDER + filename)) {
                     console.log('file has been created or renamed');
-                    s3.uploadToS3(constants.FOLDER, filname);
+                    s3.uploadToS3(constants.FOLDER, filename);
                 } else {
                     console.log('file has been deleted');
                     s3.deleteObject(constants.FOLDER, filename);
                 }
             } else {
                 console.log('file has been changed');
-                s3.uploadToS3(constants.FOLDER, filname);
+                s3.uploadToS3(constants.FOLDER, filename);
             }
         } else {
             console.log('filename not provided');
