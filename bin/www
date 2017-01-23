@@ -107,7 +107,7 @@ function startFileWatcher() {
                     s3.uploadToS3(constants.FOLDER, filename);
                 } else {
                     console.log('file has been deleted');
-                    s3.deleteObject(constants.FOLDER, filename);
+                    s3.deleteObject(filename);
                 }
             } else {
                 console.log('file has been changed');
